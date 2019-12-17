@@ -1,0 +1,144 @@
+//Bhupinder Singh
+//c0727639
+
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Audi');
+
+var data=[{Model:"A6",Trim:"Sedan",Year:2014,Color:"Grey",Price :28000,Transmission:"Manual"},
+          {Model:"A8",Trim:"Sedan",Year:2015,Color:"Black",Price :42150,Transmission:"Automatic"},
+          {Model:"Q7",Trim:"SUV",Year:2017,Color:"White",Price :49900,Transmission:"Automatic"}]
+
+col.insertMany(data,(err,respond)=>{
+if (err) throw err;
+console.log("Data Inserted")
+conn.close();
+console.log("Connection Closed.")
+});
+});
+
+
+
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Volkswagen');
+
+var data=[{Model:"Beetle",Trim:"Coupe",Year:1967,Color:"Red",Price :18000,Transmission:"Manual"},
+          {Model:"Jetta",Trim:"Sedan",Year:2016,Color:"Black",Price :20800,Transmission:"Manual"},
+          {Model:"Passat",Trim:"Sedan",Year:2018,Color:"Grey",Price :27800,Transmission:"Automatic"}]
+
+col.insertMany(data,(err,respond)=>{
+if (err) throw err;
+console.log("Data Inserted")
+conn.close();
+console.log("Connection Closed.")
+});
+});
+
+
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Hyundai');
+
+var data=[{Model:"Elantra",Trim:"Sedan",Year:2015,Color:"White",Price :17000,Transmission:"Manual"},
+          {Model:"Sonata",Trim:"Sedan",Year:2017,Color:"Black",Price :22800,Transmission:"Manual"},
+          {Model:"Elantra",Trim:"Sedan",Year:2018,Color:"Grey",Price :21900,Transmission:"Automatic"}]
+
+col.insertMany(data,(err,respond)=>{
+if (err) throw err;
+console.log("Data Inserted")
+conn.close();
+console.log("Connection Closed.")
+});
+});
+
+
+//Update
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+// Connecting to mongodb
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Volkswagen');
+
+var data= {Model:"Jetta"};
+
+ var newvalues = { $set: {Price :23900} };
+
+col.updateOne(data, newvalues,(err,respond)=>{
+if (err) throw err;
+console.log("Data updated")
+//closing connection.
+conn.close();
+console.log("Connection Closed.")
+});
+});
+
+
+//Delete
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+// Connecting to mongodb
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Hyundai');
+
+var myquery= {Transmission:"Manual"};
+
+
+col.deleteMany(myquery,(err,respond)=>{
+if (err) throw err;
+console.log("Data deleted")
+//closing connection.
+conn.close();
+console.log("Connection Closed.")
+});
+});
+
+
+//Read
+const mongodb_client = require('mongodb').MongoClient;
+let url = "mongodb+srv://c0742332:Guru@7428@cluster0-mwe55.mongodb.net/test?retryWrites=true&w=majority";
+
+mongodb_client.connect(url, { useUnifiedTopology: true }, (err,conn)=>{
+if (err) throw err;
+console.log("Connected Successfully.");
+
+let db = conn.db('Cars');
+
+let col = db.collection('Audi');
+
+col.find({}, { projection: { _id: 0, Model: 1, Trim: 1 }}).toArray(function(err, result){
+if (err) throw err;
+console.log(result)
+
+conn.close();
+
+});
+});
